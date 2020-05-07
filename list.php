@@ -36,9 +36,8 @@ $dynamic_texts = get_dynamic_text();
         <?php if(is_array($dynamic_texts)) : ?>
             <?php foreach($dynamic_texts as $dynamic_text) : ?>
             <tr>
-                <td><?php echo $dynamic_text['name'];?><br>
-
-                    <input type="text" title="Replace tag to use in text" value="[<?php echo $dynamic_text['name'];?>]">
+                <td>
+                    <input type="text" title="Paste to use in text" value="[<?php echo $dynamic_text['name'];?>]" readonly>
                 </td>
                 <td style="word-wrap: break-word"><?php echo $dynamic_text['content'];?></td>
                 <td>

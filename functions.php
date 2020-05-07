@@ -24,7 +24,10 @@ function exec_dynamic_text_replace_in_layout($layout)
                 }
                 if ($searches) {
                     $layout = str_replace($searches, $replaces, $layout);
-
+                    // nested replace
+                    $layout = str_replace($searches, $replaces, $layout);
+                    $layout = str_replace($searches, $replaces, $layout);
+                    $layout = str_replace($searches, $replaces, $layout);
                     return $layout;
                 }
             }
