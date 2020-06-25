@@ -21,10 +21,21 @@ function exec_dynamic_text_replace_in_layout($layout)
                         $searches[] = '[' . $text['name'] . ']';
                         $replaces[] = $text['content'];
                     }
+                
+                    if (isset($text['name']) and $text['name']) {
+                        $searches[] = '%5B' . $text['name'] . '%5D';
+                        $replaces[] = $text['content'];
+                    }
                 }
                 if ($searches) {
                     $layout = str_replace($searches, $replaces, $layout);
                     // nested replace
+                    $layout = str_replace($searches, $replaces, $layout);
+                    $layout = str_replace($searches, $replaces, $layout);
+                    $layout = str_replace($searches, $replaces, $layout);
+                    $layout = str_replace($searches, $replaces, $layout);
+                    $layout = str_replace($searches, $replaces, $layout);
+                    $layout = str_replace($searches, $replaces, $layout);
                     $layout = str_replace($searches, $replaces, $layout);
                     $layout = str_replace($searches, $replaces, $layout);
                     $layout = str_replace($searches, $replaces, $layout);
@@ -35,6 +46,7 @@ function exec_dynamic_text_replace_in_layout($layout)
     }
     return $layout;
 }
+
 
 
 
