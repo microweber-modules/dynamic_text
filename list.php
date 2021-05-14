@@ -22,31 +22,31 @@ $dynamic_texts = get_dynamic_text();
 
 
 ?>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th><?php _e('Name'); ?></th>
+            <th><?php _e('Content'); ?></th>
+            <th><?php _e('Action'); ?></th>
+        </tr>
+        </thead>
+        <tbody>
+            <?php if(is_array($dynamic_texts)) : ?>
+                <?php foreach($dynamic_texts as $dynamic_text) : ?>
+                <tr class="small td-valign">
+                    <td>
+                        <label><?php echo $dynamic_text['name'];?></label>
+                    </td>
+                    <td style="word-wrap: break-word"><?php echo $dynamic_text['content'];?></td>
+                    <td>
+                        <a href="javascript:;" onclick="edit_dynamic_text(<?php echo $dynamic_text['id'];?>);" class="btn  btn-sm btn-secondary">Edit</a>
+                        <a href="javascript:;" onclick="delete_dynamic_text(<?php echo $dynamic_text['id'];?>);" class="btn btn-sm  btn-secondary">Delete</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+    </table>
 
-<table class="mw-ui-table" width="100%" cellspacing="0" cellpadding="0">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Content</th>
-        <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-
-        <?php if(is_array($dynamic_texts)) : ?>
-            <?php foreach($dynamic_texts as $dynamic_text) : ?>
-            <tr>
-                <td>
-                    <input type="text" title="Paste to use in text" value="[<?php echo $dynamic_text['name'];?>]" readonly>
-                </td>
-                <td style="word-wrap: break-word"><?php echo $dynamic_text['content'];?></td>
-                <td>
-                    <a href="javascript:;" onclick="edit_dynamic_text(<?php echo $dynamic_text['id'];?>);" class="mw-ui-btn mw-ui-btn-medium">Edit</a>
-                    <a href="javascript:;" onclick="delete_dynamic_text(<?php echo $dynamic_text['id'];?>);" class="mw-ui-btn mw-ui-btn-medium">Delete</a>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        <?php endif; ?>
-
-    </tbody>
-</table>
+</div>
