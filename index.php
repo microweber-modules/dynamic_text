@@ -28,15 +28,20 @@ if (isset($params['name']) && !empty($params['name'])) {
         }
     } else {
         $save = array();
+        if (isset ($params['content'])) {
+            $save['content'] = $params['content'];
+        }
         $save['name'] = $params['name'];
-        $save['content'] = $params['content'];
         if (isset($dynamic_text['content'])) {
             $save['content'] = $params['content'];
 
 
         }
         save_dynamic_text($save);
-        echo $save['content'];
+
+        if (isset ($save['content'])) {
+            echo $save['content'];
+        }
     }
 } else {
    print lnotif('Click here to edit dynamic text');
