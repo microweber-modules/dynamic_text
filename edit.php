@@ -80,13 +80,13 @@ if (isset($params["live_edit"]) and $params["live_edit"]) {
                 <small class="text-muted d-block mb-3"><?php _e("Add new dynamic text then drop it in live edit."); ?></small>
                 <form id="save-dynamic-text-form" class="form-group js-toggle-form" style="display: none">
                     <div class="col-4">
-                        <label><?php _e("Name"); ?>:</label>
+                        <label><?php _e("Variable"); ?>:</label>
                         <small class="text-muted d-block mb-3"><?php _e("Example: 'my-cool-name'"); ?></small>
 
                         <input type="text" name="name" class="form-control js-dynamic-text-name" required="required">
 
                         <br>
-                        <label><?php _e("Content"); ?>:</label>
+                        <label><?php _e("Variable value"); ?>:</label>
                         <small class="text-muted d-block mb-3"><?php _e("Type your dynamic text content in the text area below"); ?></small>
 
                         <textarea name="content" class="form-control js-dynamic-text-content" required="required"></textarea>
