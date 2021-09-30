@@ -79,9 +79,14 @@ if (isset($params["live_edit"]) and $params["live_edit"]) {
                 <label class="control-label"><?php _e("Dynamic text"); ?></label>
                 <small class="text-muted d-block mb-3"><?php _e("Add new dynamic text then drop it in live edit."); ?></small>
                 <form id="save-dynamic-text-form" class="form-group js-toggle-form" style="display: none">
-                    <div class="col-4">
+                    <div class="col-12">
                         <label><?php _e("Variable key"); ?>:</label>
                         <small class="text-muted d-block mb-3"><?php _e("Example: 'my-cool-name'"); ?></small>
+
+                        <?php
+                        $contentModel = new \MicroweberPackages\Content\Content();
+                        $formBuilder = App::make(\MicroweberPackages\Form\FormElementBuilder::class);
+                        ?>
 
                         <input type="text" name="name" class="form-control js-dynamic-text-name" required="required">
 
@@ -89,7 +94,16 @@ if (isset($params["live_edit"]) and $params["live_edit"]) {
                         <label><?php _e("Variable value"); ?>:</label>
                         <small class="text-muted d-block mb-3"><?php _e("Type your dynamic text content in the text area below"); ?></small>
 
-                        <textarea name="content" class="form-control js-dynamic-text-content" required="required"></textarea>
+                       <!-- <textarea name="content" class="form-control js-dynamic-text-content" required="required"></textarea>
+
+                        -->
+
+                        <?php
+                        echo $formBuilder->textarea('content')
+                            ->setModel($contentModel)
+                            ->value('');
+                        ?>
+
                         <br/>
                         <br/>
                         <input type="hidden" value="0" name="id" class="js-dynamic-text-id"/>
