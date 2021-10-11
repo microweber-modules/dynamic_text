@@ -15,6 +15,6 @@ class DynamicTextVariable extends Model
         'content',
     ];
 
-    public $translatable = ['name','content'];
+    public $translatable = ['content'];
 
 }

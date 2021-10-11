@@ -44,7 +44,7 @@
         $formBuilder = App::make(\MicroweberPackages\Form\FormElementBuilder::class);
         ?>
 
-        <?php echo $formBuilder->text('name')->setModel($model); ?>
+        <input type="text" class="form-control" name="name" value="<?php echo $model->name; ?>">
 
         <br>
         <label><?php _e("Variable value"); ?>:</label>

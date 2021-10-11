@@ -33,6 +33,11 @@ if (isset($params["live_edit"]) and $params["live_edit"]) {
         </nav>
         <div class="tab-content py-3">
             <div class="tab-pane fade show active" id="list">
+
+                <?php if ($from_live_edit) : ?>
+                <module type="dynamic_text/dropdown_select" />
+                <?php endif; ?>
+
                 <module type="dynamic_text/list" />
             </div>
             <?php if ($from_live_edit) : ?>

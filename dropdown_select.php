@@ -20,13 +20,13 @@ if (!$mod_id) {
 </script>
 <?php
 $selected = get_option('selected_text_name', $mod_id);
-$dynamic_texts = get_dynamic_text();
+$dynamic_texts = \MicroweberPackages\DynamicText\Models\DynamicTextVariable::get()->toArray();
 ?>
 
 
 <h5>  <?php _e("Which text to display?"); ?></h5>
 
-<select name="selected_text_name" option-group="<?php print $mod_id ?>" class="mw-ui-field mw_option_field form-control">
+<select name="selected_text_name" option-group="<?php print $mod_id ?>" class="mw_option_field form-control">
     <option value="" <?php if (!$selected or $selected == 'default'): ?>  selected="selected"  <?php endif; ?> ><?php _e('Default'); ?></option>
     <?php if (is_array($dynamic_texts)) : ?>
         <?php foreach ($dynamic_texts as $dynamic_text) : ?>
