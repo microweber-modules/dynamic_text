@@ -54,7 +54,7 @@
 
         <br/>
         <br/>
-        <input type="hidden" value="0" name="id" class="js-dynamic-text-id"/>
+        <input type="hidden" value="<?php echo $params['id'];?>" name="id" />
         <button type="submit" name="submit" class="btn btn-primary"><?php _e("Save"); ?></button>
     </div>
 </form>

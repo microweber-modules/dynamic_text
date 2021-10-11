@@ -81,19 +81,17 @@ function save_dynamic_text($data)
         return;
     }
 
-    if (isset($data['id']) && $data['id'] == 0) {
-        unset($data['id']);
+    if (isset($data['id']) && $data['id'] > 0) {
+        $dynamicText = \MicroweberPackages\DynamicText\Models\DynamicTextVariable::whereId($data['id'])->first();
+    } else {
+        $dynamicText = new \MicroweberPackages\DynamicText\Models\DynamicTextVariable();
     }
-    if (isset($data['name'])) {
-        $data['name'] = url_title($data['name']);
-        $check = get_dynamic_text('single=1&name=' . $data['name']);
-        if ($check and isset($check['id'])) {
-            $data['id'] = $check['id'];
-        }
-    }
-    $data['allow_html'] = true;
-    $table = "dynamic_text_variables";
-    return db_save($table, $data);
+
+    $dynamicText->fill($data);
+    $dynamicText->save();
+
+    return $dynamicText;
+
 }
 
 api_expose_admin('get_dynamic_text');
