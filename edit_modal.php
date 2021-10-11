@@ -2,6 +2,9 @@
 
 <script>
     $(document).ready(function () {
+
+        $('.selectpicker').selectpicker('refresh');
+
         $("#save-dynamic-text-form").submit(function (event) {
 
             var data = $(this).serialize();
@@ -17,26 +20,8 @@
             });
             event.preventDefault();
         });
+
     });
-
-    function edit_dynamic_text(id) {
-
-        $('.js-dynamic-text-id').val(id);
-        $('#save-dynamic-text-form').show();
-        $('#save-dynamic-text-form-add-btn').hide();
-        $.get("<?php print api_url('get_dynamic_text'); ?>", {single: 1, id: id})
-            .done(function (data) {
-                $('.js-dynamic-text-name').val(data.name);
-                $('.js-dynamic-text-content').html(data.content);
-
-            });
-
-    }
-</script>
-
-<script>
-    mw.lib.require('jqueryui');
-    mw.require("<?php print $config['url_to_module'];?>css/main.css");
 </script>
 
 <form id="save-dynamic-text-form" class="form-group">
@@ -51,17 +36,21 @@
         <small class="text-muted d-block mb-3"><?php _e("Example: 'my-cool-name'"); ?></small>
 
         <?php
-        $model = new \MicroweberPackages\DynamicText\Models\DynamicTextVariable();
+        if (isset($params['id']) && $params['id'] > 0) {
+            $model = \MicroweberPackages\DynamicText\Models\DynamicTextVariable::whereId($params['id'])->first();
+        } else {
+            $model = new \MicroweberPackages\DynamicText\Models\DynamicTextVariable();
+        }
         $formBuilder = App::make(\MicroweberPackages\Form\FormElementBuilder::class);
         ?>
 
-        <?php echo $formBuilder->text('name')->setModel($model)->value(''); ?>
+        <?php echo $formBuilder->text('name')->setModel($model); ?>
 
         <br>
         <label><?php _e("Variable value"); ?>:</label>
         <small class="text-muted d-block mb-3"><?php _e("Type your dynamic text content in the text area below"); ?></small>
 
-        <?php echo $formBuilder->textarea('content')->setModel($model)->value(''); ?>
+        <?php echo $formBuilder->textarea('content')->setModel($model); ?>
 
         <br/>
         <br/>

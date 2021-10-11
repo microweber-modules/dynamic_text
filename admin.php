@@ -28,8 +28,8 @@ if (isset($params["live_edit"]) and $params["live_edit"]) {
 
     <div class="card-body pt-3">
         <script>
-            mw.lib.require('jqueryui');
-            mw.require("<?php print $config['url_to_module'];?>css/main.css");
+            //mw.lib.require('jqueryui');
+            //mw.require("<?php print $config['url_to_module'];?>css/main.css");
         </script>
 
         <nav class="nav nav-pills nav-justified btn-group btn-group-toggle btn-hover-style-3">

@@ -51,8 +51,8 @@ $dynamic_texts = \MicroweberPackages\DynamicText\Models\DynamicTextVariable::all
                     </td>
                     <td style="word-wrap: break-word"><?php echo $dynamic_text['content'];?></td>
                     <td>
-                        <a href="javascript:;" onclick="edit_dynamic_text(<?php echo $dynamic_text['id'];?>);" class="btn  btn-sm btn-secondary"><?php _e('Edit'); ?></a>
-                        <a href="javascript:;" onclick="delete_dynamic_text(<?php echo $dynamic_text['id'];?>);" class="btn btn-sm  btn-secondary"><?php _e('Delete'); ?></a>
+                        <a href="javascript:;" onclick="edit_dynamic_text(<?php echo $dynamic_text['id'];?>);" class="btn btn-sm btn-outline-primary"><?php _e('Edit'); ?></a>
+                        <a href="javascript:;" onclick="delete_dynamic_text(<?php echo $dynamic_text['id'];?>);" class="btn btn-sm btn-outline-danger"><?php _e('Delete'); ?></a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
