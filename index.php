@@ -1,26 +1,28 @@
 <?php
-$selected_dynamic_text_name = get_option('selected_text_name', $params['id']);
-if ($selected_dynamic_text_name) {
-    $params['name'] = $selected_dynamic_text_name;
+$selectedText = get_option('selected_text_name', $params['id']);
+if ($selectedText) {
+    $params['name'] = $selectedText;
 }
 
 if (isset($params['name']) && !empty($params['name'])) {
 
-    $dynamic_text = \MicroweberPackages\DynamicText\Models\DynamicTextVariable::whereName($params['name'])->first();
+    $dynamicTextFind = \MicroweberPackages\DynamicText\Models\DynamicTextVariable::whereName($params['name'])->first();
 
-    if ($dynamic_text != null) {
-        echo $dynamic_text->content;
+    if ($dynamicTextFind != null) {
+        echo $dynamicTextFind->content;
     } else {
         $save = array();
+
         if (isset ($params['content'])) {
             $save['content'] = $params['content'];
         }
+
         $save['name'] = $params['name'];
-        if (isset($dynamic_text['content'])) {
+
+        if (isset($dynamicTextFind['content'])) {
             $save['content'] = $params['content'];
-
-
         }
+
         save_dynamic_text($save);
 
         if (isset ($save['content'])) {
