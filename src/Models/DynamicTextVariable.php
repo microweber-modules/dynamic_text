@@ -11,9 +11,10 @@ class DynamicTextVariable extends Model
     use HasCreatedByFieldsTrait;
 
     protected $fillable = [
-        'value',
+        'name',
+        'content',
     ];
 
-    public $translatable = ['name'];
+    public $translatable = ['name','content'];
 
 }
