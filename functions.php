@@ -12,7 +12,7 @@ function exec_dynamic_text_replace_in_layout($layout)
 {
     if (defined('MW_DYNAMIC_TEXT_SHOULD_REPLACE')) {
         if (!in_live_edit()) {
-            $texts = get_dynamic_text('nolimit=1');
+            $texts = \MicroweberPackages\DynamicText\Models\DynamicTextVariable::get()->toArray();
             if ($texts) {
                 $replaces = array();
                 $searches = array();
@@ -47,15 +47,10 @@ function exec_dynamic_text_replace_in_layout($layout)
     return $layout;
 }
 
-
-
-
-
-
 event_bind('parser.process', function ($layout) {
     if (defined('MW_DYNAMIC_TEXT_SHOULD_REPLACE')) {
 
-        $texts = get_dynamic_text('nolimit=1');
+        $texts =  \MicroweberPackages\DynamicText\Models\DynamicTextVariable::get()->toArray();
         if ($texts) {
             $replaces = array();
             $searches = array();
@@ -94,25 +89,17 @@ function save_dynamic_text($data)
 
 }
 
-api_expose_admin('get_dynamic_text');
-function get_dynamic_text($params = array())
-{
-    if (is_string($params)) {
-        $params = parse_params($params);
-    }
-    $params['table'] = "dynamic_text_variables";
-    return db_get($params);
-}
-
 api_expose_admin('delete_dynamic_text');
 function delete_dynamic_text($params)
 {
     if (!is_admin()) {
         return;
     }
+
     if (isset($params['id'])) {
-        $table = "dynamic_text_variables";
-        $id = $params['id'];
-        return db_delete($table, $id);
+        $model = \MicroweberPackages\DynamicText\Models\DynamicTextVariable::whereId($params['id'])->first();
+        if ($model != null) {
+            return $model->delete();
+        }
     }
 }

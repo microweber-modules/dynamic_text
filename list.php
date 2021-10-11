@@ -31,7 +31,7 @@
 <br />
 <br />
 <?php
-$dynamic_texts = \MicroweberPackages\DynamicText\Models\DynamicTextVariable::all()->toArray();
+$dynamic_texts = \MicroweberPackages\DynamicText\Models\DynamicTextVariable::get()->toArray();
 ?>
 <div class="table-responsive">
     <table class="table">
