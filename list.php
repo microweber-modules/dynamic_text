@@ -14,13 +14,24 @@
             });
         }
     }
+    function edit_dynamic_text(id = false) {
+        var data = {};
+        data.id = id;
+        openDynamicTextEditModal = mw.tools.open_module_modal('dynamic_text/edit_modal', data, {
+            overlay: true,
+            skin: 'simple',
+            height: 'auto',
+            width: 750,
+            title: 'Dynamic Text Add New'
+        });
+    }
 </script>
 
+<button type="button" class="btn btn-outline-success" onclick="edit_dynamic_text();"><?php _e('Add new'); ?></button>
+<br />
+<br />
 <?php
-$dynamic_texts = get_dynamic_text();
-
-
-
+$dynamic_texts = \MicroweberPackages\DynamicText\Models\DynamicTextVariable::all()->toArray();
 ?>
 <div class="table-responsive">
     <table class="table">
@@ -40,8 +51,8 @@ $dynamic_texts = get_dynamic_text();
                     </td>
                     <td style="word-wrap: break-word"><?php echo $dynamic_text['content'];?></td>
                     <td>
-                        <a href="javascript:;" onclick="edit_dynamic_text(<?php echo $dynamic_text['id'];?>);" class="btn  btn-sm btn-secondary">Edit</a>
-                        <a href="javascript:;" onclick="delete_dynamic_text(<?php echo $dynamic_text['id'];?>);" class="btn btn-sm  btn-secondary">Delete</a>
+                        <a href="javascript:;" onclick="edit_dynamic_text(<?php echo $dynamic_text['id'];?>);" class="btn  btn-sm btn-secondary"><?php _e('Edit'); ?></a>
+                        <a href="javascript:;" onclick="delete_dynamic_text(<?php echo $dynamic_text['id'];?>);" class="btn btn-sm  btn-secondary"><?php _e('Delete'); ?></a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

@@ -1,5 +1,5 @@
 <?php
-
+autoload_add_namespace(__DIR__ . '/src/', 'MicroweberPackages\\DynamicText\\');
 
 event_bind('mw.front', function ($params) {
     if (!defined('MW_DYNAMIC_TEXT_SHOULD_REPLACE')) {
@@ -21,7 +21,7 @@ function exec_dynamic_text_replace_in_layout($layout)
                         $searches[] = '[' . $text['name'] . ']';
                         $replaces[] = $text['content'];
                     }
-                
+
                     if (isset($text['name']) and $text['name']) {
                         $searches[] = '%5B' . $text['name'] . '%5D';
                         $replaces[] = $text['content'];

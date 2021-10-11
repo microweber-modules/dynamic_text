@@ -20,3 +20,7 @@ $config['tables'] = array(
         'updated_at' => 'datetime',
     )
 );
+
+$config['settings']['service_provider'] = [
+    \MicroweberPackages\StandaloneUpdater\DynamicTextServiceProvider::class
+];
