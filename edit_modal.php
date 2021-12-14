@@ -39,12 +39,18 @@
         if (isset($params['id']) && $params['id'] > 0) {
             $model = \MicroweberPackages\DynamicText\Models\DynamicTextVariable::whereId($params['id'])->first();
         } else {
-            $model = new \MicroweberPackages\DynamicText\Models\DynamicTextVariable();
+            $model = new \MicroweberPackages\DynamicText\Models\DynamicTextVariable(); 
         }
+
         $formBuilder = App::make(\MicroweberPackages\Form\FormElementBuilder::class);
         ?>
 
-        <input type="text" class="form-control" name="name" value="<?php echo $model->name; ?>">
+        <?php
+        echo $formBuilder->text('name')
+            ->setModel($model)
+            ->value($model->name)
+            ->autofocus(true);
+        ?>
 
         <br>
         <label><?php _e("Variable value"); ?>:</label>
