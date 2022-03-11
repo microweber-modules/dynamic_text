@@ -1,4 +1,5 @@
 <?php
+
 autoload_add_namespace(__DIR__ . '/src/', 'MicroweberPackages\\DynamicText\\');
 
 event_bind('mw.front', function ($params) {
@@ -69,7 +70,7 @@ event_bind('parser.process', function ($layout) {
     }
 });
 
-api_expose_admin('save_dynamic_text');
+
 function save_dynamic_text($data)
 {
     if (!is_admin()) {
@@ -86,20 +87,4 @@ function save_dynamic_text($data)
     $dynamicText->save();
 
     return $dynamicText;
-
-}
-
-api_expose_admin('delete_dynamic_text');
-function delete_dynamic_text($params)
-{
-    if (!is_admin()) {
-        return;
-    }
-
-    if (isset($params['id'])) {
-        $model = \MicroweberPackages\DynamicText\Models\DynamicTextVariable::whereId($params['id'])->first();
-        if ($model != null) {
-            return $model->delete();
-        }
-    }
 }

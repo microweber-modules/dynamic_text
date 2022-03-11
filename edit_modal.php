@@ -11,11 +11,17 @@
             var url = "<?php print api_url('save_dynamic_text'); ?>";
             var post = $.post(url, data);
             post.done(function (data) {
-                mw.reload_module_everywhere('dynamic_text/select')
-                mw.reload_module_everywhere('dynamic_text/list')
-                mw.reload_module_everywhere('dynamic_text')
-                $('.js-toggle-form').toggle();
-                mw.notification.success("<?php _ejs("All changes are saved"); ?>.");
+
+                if (data.errors) {
+                    mw.notification.error(data.errors.name[0]);
+                } else {
+
+                    mw.reload_module_everywhere('dynamic_text/select')
+                    mw.reload_module_everywhere('dynamic_text/list')
+                    mw.reload_module_everywhere('dynamic_text')
+                    $('.js-toggle-form').toggle();
+                    mw.notification.success("<?php _ejs("All changes are saved"); ?>.");
+                }
 
             });
             event.preventDefault();
@@ -44,14 +50,14 @@
 
         $formBuilder = App::make(\MicroweberPackages\Form\FormElementBuilder::class);
         ?>
-        
+
         <input type="text" class="form-control" name="name" value="<?php echo $model->name; ?>">
 
         <br>
         <label><?php _e("Variable value"); ?>:</label>
         <small class="text-muted d-block mb-3"><?php _e("Type your dynamic text content in the text area below"); ?></small>
 
-        <?php echo $formBuilder->textarea('content')->setModel($model); ?>
+        <?php echo $formBuilder->textarea('content')->setModel($model)->value($model->content); ?>
 
         <br/>
         <br/>
