@@ -25,7 +25,7 @@ use MicroweberPackages\DynamicText\Models\DynamicTextVariable;
             }
 
             return save_dynamic_text($data);
-        });
+        })->name('save_dynamic_text');
 
         Route::post('delete_dynamic_text', function () {
 
@@ -42,5 +42,5 @@ use MicroweberPackages\DynamicText\Models\DynamicTextVariable;
                 }
             }
 
-        });
+        })->name('delete_dynamic_text');
     });
